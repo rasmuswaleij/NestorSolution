@@ -1,0 +1,61 @@
+﻿@model Domain.Dtos.EditProjectForm
+
+@* <pre>
+ID: @Model.Id
+Name: @Model.ProjectName
+ClientId: @Model.ClientId
+MemberId: @Model.MemberId
+StatusId: @Model.StatusId
+</pre> *@
+
+@* @using System.Text.Json
+<pre>@Html.Raw(JsonSerializer.Serialize(Model))</pre> *@
+
+<div id="editProjectForm"  class="modal-custom">
+
+@*     <p style="color:red;">Projekt-ID: @Model?.Id, Namn: @Model?.ProjectName</p>
+ *@
+
+    <div class="modal-custom-content">
+        <div class="modal-custom-header">
+            <h3>Edit Project</h3>
+            <button type="button" class="btn-close" data-close="true"></button>
+        </div>
+        <form novalidate method="post" asp-action="Edit" asp-controller="Projects">
+            <input asp-for="Id" readonly type="hidden" />
+
+           
+
+            <div class="form-group">
+                <label asp-for="ProjectName"></label>
+                <div class="field-group">
+                    <input asp-for="ProjectName" />
+                    <span asp-validation-for="ProjectName"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientId"></label>
+                <div class="field-group">
+                    <input asp-for="ClientId" />
+                    <span asp-validation-for="ClientId"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemberId"></label>
+                <div class="field-group">
+                    <input asp-for="MemberId" />
+                    <span asp-validation-for="MemberId"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusId"></label>
+                <div class="field-group">
+                    <input asp-for="StatusId" />
+                    <span asp-validation-for="StatusId"></span>
+                </div>
+            </div>
+
+            <button class="btn btn-submit btn-blue">Save</button>
+        </form>
+    </div>
+</div>

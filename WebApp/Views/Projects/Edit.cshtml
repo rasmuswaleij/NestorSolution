@@ -1,0 +1,31 @@
+﻿@model EditProjectForm
+
+<div class="edit-project-form">
+    <h3>Edit Project</h3>
+
+    <form method="post" asp-action="Edit" asp-controller="Projects">
+        <input asp-for="Id" type="hidden" />
+
+        <div class="form-group">
+            <label asp-for="ProjectName"></label>
+            <input asp-for="ProjectName" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ClientId"></label>
+            <input asp-for="ClientId" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="MemberId"></label>
+            <input asp-for="MemberId" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="StatusId"></label>
+            <input asp-for="StatusId" />
+        </div>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</div>

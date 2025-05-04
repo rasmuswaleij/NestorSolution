@@ -1,0 +1,50 @@
+﻿@model ProjectAddFormData
+
+
+<div id="addProjectModal" class="modal-custom">
+    <div class="modal-custom-content">
+        <div class="modal-custom-header">
+            <h3>Add Project</h3>
+            <button type="button" class="btn-close" data-close="true"></button>
+        </div>
+        <form novalidate method="post" asp-action="Add" asp-controller="Projects">
+
+           @*  <div class="image-previewer circle ">
+                <img src="" class="image-preview" />
+                <input asp-for="Image" accept="image/*" class="hide" />
+            </div> *@
+
+            <div class="form-group">
+                <label asp-for="ProjectName"></label>
+                <div class="field-group">
+                    <input asp-for="ProjectName" />
+                    <span asp-validation-for="ProjectName"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientId"></label>
+                <div class="field-group">
+                    <input asp-for="ClientId" />
+                    <span asp-validation-for="ClientId"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemberId"></label>
+                <div class="field-group">
+                    <input asp-for="MemberId" />
+                    <span asp-validation-for="MemberId"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusId"></label>
+                <div class="field-group">
+                    <input asp-for="StatusId" />
+                    <span asp-validation-for="StatusId"></span>
+                </div>
+            </div>
+           
+
+            <button class="btn btn-submit btn-blue">Create</button>
+        </form>
+    </div>
+</div>

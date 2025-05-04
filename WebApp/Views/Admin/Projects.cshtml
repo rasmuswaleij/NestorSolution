@@ -1,0 +1,51 @@
+﻿@using Business.Models
+@model ProjectResult<IEnumerable<Project>>
+
+@{
+    ViewData["Title"] = "Projects";
+    <!--Below written with help from AI-->
+    var addProjectFormModel = new ProjectAddFormData();
+    var editProjectFormModel = new EditProjectForm();
+
+
+}
+
+
+<div>
+        <!--Below written with help from AI-->
+    <partial name="Partials/Sections/_AddProjectForm" model="addProjectFormModel" />
+    <partial name="Partials/Sections/_EditProjectModal" model="editProjectFormModel" />
+
+
+</div>
+
+<div id="editProjectModalContainer"></div>
+
+<section id="members">
+    <div class="page-header">
+        <h1>@ViewData["Title"]</h1>
+        <button type="button" data-modal="true" data-target="#addProjectModal" class="btn btn-add btn-blue">
+            <i class="fas"></i>
+            <span>Add Project</span>
+        </button>
+
+    </div>
+
+    <div class="members-list">
+        @if (Model != null)
+        {
+            @foreach (var member in Model.Result)
+            {
+                <div class="card member">
+                    <h4 class="name">@member.ProjectName</h4>
+                    
+                    <i class="fa-solid fa-ellipsis edit-btn" data-modal="true" data-project-id="@member.Id" data-target="#editProjectForm" style="cursor: pointer;"></i>
+
+
+
+                </div>
+            }
+        }
+
+    </div>
+</section>

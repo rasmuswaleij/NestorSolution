@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Member>
+
+@{
+    ViewData["Title"] = "Team Members";
+}
+<section id="members">
+    <div class="page-header">
+        <h1>@ViewData["Title"]</h1>
+        <button class="btn btn-add">Add Member</button>
+
+    </div>
+
+    <div class="members-list">
+        @if(Model != null){
+            @foreach (var member in Model)
+            {
+                <div class="card member">
+                    <h4 class="name">@member.FirstName @member.LastName</h4>
+                    <div class="jobtitle">@member.JobTitle CEO</div>
+                    <div class="email">@member.Email</div>
+                    <div class="phone">@member.Phone +4676 394 12 12</div>
+                    <div class="role">Role</div>
+
+
+                </div>
+            }
+        }
+        
+    </div>
+</section>
+
