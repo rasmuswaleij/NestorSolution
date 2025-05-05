@@ -1,11 +1,6 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     console.log("JavaScript loaded successfully");
 
-    // Hitta knappar med data-modal="true"
-    const amountModalButtons = document.querySelectorAll('[data-modal="true"]');
-    console.log("Found modal buttons:", amountModalButtons.length); // Skriver ut hur många knappar som hittades
-
-
     const previewSize = 150
 
     document.querySelectorAll("[data-modal][data-project-id]").forEach(function (icon) {
@@ -17,19 +12,12 @@
                 .then(html => {
 
                     document.getElementById("editProjectModalContainer").innerHTML = '';
-
-
                     document.getElementById("editProjectModalContainer").innerHTML = html;
-                    // Om du använder en modal plugin, visa den här
-                    // Ex: $('#editProjectModal').modal('show');
-
-
-                    // Stäng alla andra modaler (ifall någon annan är öppen)
                     document.querySelectorAll('.modal-custom').forEach(modal => {
                         modal.style.display = 'none';
                     });
 
-                    // 🟢 Visa modalen direkt efter att innehållet laddats
+                    // Visa modalen direkt efter att innehållet laddats
                     const modal = document.querySelector('#editProjectModalContainer .modal-custom');
                     if (modal) {
                         modal.style.display = 'flex';

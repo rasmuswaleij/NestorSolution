@@ -100,6 +100,12 @@
     --clr-btn-gray-background: var(--gray-100);
     --clr-btn-gray-text-hover: var(--dark-100);
     --clr-btn-gray-background-hover: var(--gray-500);
+    --clr-btn-account: var(--dark-400);
+    --clr-btn-account-border: var(--clr-border);
+    --clr-btn-account-background: transparent;
+    --clr-btn-notification: var(--dark-400);
+    --clr-btn-notification-border: var(--clr-border);
+    --clr-btn-notification-background: transparent;
     /* links */
     --clr-link: var(--blue-accent);
     --clr-link-hover: var(--darkblue);
@@ -278,10 +284,12 @@ h6, .h6 {
 header, .header {
     grid-area: header;
     border-bottom: 1px solid var(--clr-border);
-    padding: 2rem;
-    display: flex;
-    justify-content: flex-end;
+    padding: 1.5rem 2rem;
+    display: grid;
     align-items: center;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 2rem;
+
 }
 
 aside, .sidebar {
@@ -409,6 +417,28 @@ a{
         color: var(--clr-alert-notification-error-text)
     }
 
+.btn-notification{
+
+
+}
+
+.btn-account {
+    transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
+    background-color: var(--clr-btn-account-background);
+    border-color: var(--clr-btn-account-border);
+    color: var(--clr-btn-account);
+    border-radius: 50%;
+    min-width: 0px;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+        img
+            {
+                height: 40px;
+                width: 40px;
+            }
+}
+
 
 /* lists */
 .client-list {
@@ -496,6 +526,17 @@ form{
     display:grid;
     gap: 0.2rem;
     margin-bottom: 1rem;
+}
+
+.form-search-input{
+    position: relative;
+    width: 100%;
+    min-height: 40px;
+    font-size: 1em;
+    font-weight: 400;
+    font-style: normal;
+    font-family: var(--font-standard);
+    border-radius: 14px;
 }
 
 label{

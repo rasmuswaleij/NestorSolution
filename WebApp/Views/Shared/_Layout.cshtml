@@ -15,7 +15,17 @@
             <partial name="Partials/_NavLinks" />
         </aside>
         <header class="header">
+            <form method="get" asp-controller="" asp-action="" novalidate class="search">
+                <input type="search" class="form-search-input" placeholder="Search..."/>
+            </form>
+
+            <button type="button" data-type="dropdown" data-target="#notification" class="btn btn-notification">Notifications</button>
+            <button type="button" data-type="dropdown" data-target="#account" class="btn btn-account">
+                <img src="~/images/users/user-template-male-green-svg.svg" alt="template avatar" />
+
+            </button>
             <a class="btn btn-logout" asp-controller="Auth" asp-action="Logout">Log out</a>
+            
         </header>
         <main class="main">
             @RenderBody()
