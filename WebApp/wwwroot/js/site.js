@@ -31,6 +31,8 @@ document.addEventListener('click', function (event) {
 const uploadTrigger = document.getElementById('upload-trigger')
 const fileInput = document.getElementById('image-upload')
 const imagePreview = document.getElementById('image-preview')
+const imagePreviewIcon = document.getElementById('image-preview-icon')
+const imagePreviewIconContainer = document.getElementById('image-preview-icon-container')
 
 uploadTrigger.addEventListener('click', function () {
     fileInput.click()
@@ -44,6 +46,10 @@ fileInput.addEventListener('change', function (e) {
         reader.onload = (e) => {
             imagePreview.src = e.target.result
             imagePreview.classList.remove('hide')
+            imagePreviewIconContainer.classList.add('selected')
+            uploadTrigger.classList.add('selected2')
+            imagePreviewIcon.classList.remove('fa-camera')
+            imagePreviewIcon.classList.add('fa-pen-to-square')
         //    uploadTrigger.classList.add('hide')
         }
 

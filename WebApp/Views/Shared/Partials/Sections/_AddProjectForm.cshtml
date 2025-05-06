@@ -15,8 +15,9 @@
             <div class="form-group">
                 <label asp-for="ProjectName" class="hide"></label>
                 <div id="upload-trigger" class="image-previewer ">
-                    <div class="circle">
-                    <img src="#" id="image-preview" class="image-preview hide" style="object-fit:contain; height: 100%; width:100%; border-radius: inherit; z-index:99;" />
+                    <img src="#" id="image-preview" class="image-preview hide" />
+                    <div id="image-preview-icon-container" class="circle">
+                        <i id="image-preview-icon" class="fa-duotone fa-solid fa-camera"></i>
                     </div>
                 </div>
                 <input @* asp-for="Image" *@ accept="image/*" class="hide" type="file" id="image-upload" />
@@ -29,7 +30,6 @@
                     <span asp-validation-for="ProjectName"></span>
                 </div>
             </div>
-
 
             <div class="form-group">
                 <label asp-for="ClientId">Client Name</label>
@@ -52,7 +52,15 @@
             <div class="form-group">
                 <label asp-for="Description">Description</label>
                 <textarea class="form-input"></textarea>
+
+                <div id="wysiwyg-" class="wysiwyg-editor"></div>
+                <div class="wysiwyg-toolbar"></div>
+
+
             </div>
+
+
+
 
             <div class="form-horizontal-group">
                 <div class="form-group">

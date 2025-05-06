@@ -803,18 +803,27 @@ input:focus, select:focus, textarea:focus {
 /* image-previewer */
 .image-previewer {
     border: 3px dashed var(--gray-700);
-    height: 150px;
-    width: 150px;
-    margin: auto auto;
+    height: 120px;
+    width: 120px;
+    padding: 0.1rem;
+    margin: 2rem auto;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    overflow: hidden;
     position: relative;
+    border-radius: 20px;
+    &.selected2{
+                   border: none;
+               }
 }
 
-    .image-previewer::after {
+.image-preview {
+    width: 100%;
+    border-radius: 14px;
+}
+
+   /* .image-previewer::after {
         content: '\f030';
         font-family: var(--font-fa-free);
         font-weight: var(--font-bold);
@@ -825,7 +834,7 @@ input:focus, select:focus, textarea:focus {
         position: relative;
         bottom: 0;
         margin: auto auto;
-    }
+    }*/
 
     .image-previewer.selected::after {
         content: '\f044';
@@ -833,10 +842,23 @@ input:focus, select:focus, textarea:focus {
         bottom: 5px;
     }
 
-    .circle {
-        border-radius: 30px;
-        position: absolute;
+.circle {
+    border-radius: 100vmax;
+    padding: 0.9rem;
+    background-color: var(--dark-600);
+    position: absolute;
+    z-index: 999;
+    i {
+              font-size: 1.2em;
+              color: var(--gray-600);
+              
+          }
 
+
+        &.selected{
+                      bottom: -40%;
+                  }
+          
     }
 
     .image-previewer.square {
