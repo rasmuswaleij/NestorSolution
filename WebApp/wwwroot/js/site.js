@@ -1,8 +1,41 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿const dropdowns = document.querySelectorAll('[data-type="dropdown"]')
+document.addEventListener('click', function (event) {
+    let clickedDropdown = null
+
+    dropdowns.forEach(dropdown => {
+        const targetId = dropdown.getAttribute('data-target')
+        const targetElement = document.querySelector(targetId)
+
+        if (dropdown.contains(event.target)) {
+            clickedDropdown = targetElement
+
+            document.querySelectorAll('.dropdown.dropdown-show').forEach(openDropdown => {
+                if (openDropdown !== targetElement) {
+                    openDropdown.classList.remove('dropdown-show')
+                }
+            })
+
+            targetElement.classList.toggle('dropdown-show')
+        }
+        
+    })
+    if (!clickedDropdown && !event.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown.dropdown-show').forEach(openDropdown => {
+            openDropdown.classList.remove('dropdown-show')
+        })
+    }
+})
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
     console.log("JavaScript loaded successfully");
 
     const previewSize = 150
 
+    //Got help from ChatGPT with the function below
     document.querySelectorAll("[data-modal][data-project-id]").forEach(function (icon) {
         icon.addEventListener("click", function () {
             const projectId = this.getAttribute("data-project-id");
@@ -21,6 +54,26 @@
                     const modal = document.querySelector('#editProjectModalContainer .modal-custom');
                     if (modal) {
                         modal.style.display = 'flex';
+                        const closeButtons = document.querySelectorAll('#editProjectModalContainer [data-close="true"]');
+                        closeButtons.forEach(button => {
+                            button.addEventListener('click', () => {
+                                const modal = button.closest('.modal-custom');
+                                if (modal)
+                                    modal.style.display = 'none';
+
+                                modal.querySelectorAll('form').forEach(form => {
+                                    form.reset();
+
+                                    const imagePreview = form.querySelector('.image-preview');
+                                    if (imagePreview)
+                                        imagePreview.src = '';
+
+                                    const imagePreviewer = form.querySelector('.image-previewer');
+                                    if (imagePreviewer)
+                                        imagePreviewer.classList.remove('selected');
+                                });
+                            });
+                        });
                     }
                 });
         });
@@ -39,7 +92,7 @@
     })
 
     // close modal
-    const closeButtons = document.querySelectorAll('[data-close="true"]')
+    const closeButtons = document.querySelectorAll('#editProjectModalContainer [data-close="true"]')
     closeButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal-custom')

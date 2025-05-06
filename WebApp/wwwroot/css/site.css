@@ -448,6 +448,7 @@ a{
 
 .dot{
     font-size: 0.5em;
+    display: none;
     &.dot-red{
                 color: var(--clr-alert-notification-error-text)
             }
@@ -470,6 +471,24 @@ a{
                 height: 40px;
                 width: 40px;
             }
+}
+
+
+.btn-close {
+    transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
+    border: none;
+    background-color: transparent;
+    z-index: 999;
+    font-size: 1.4rem;
+    cursor: pointer;
+    &::before{
+                 content: '\f00d';
+                 font-family: var(--font-fa-free);
+                    
+             }
+    &:hover {
+       color: var(--gray-800)
+    }
 }
 
 
@@ -837,6 +856,7 @@ input:focus, select:focus, textarea:focus {
 
 .dropdown {
     position: absolute;
+    display: none;
     right: 0;
     top:120%;
     color: var(--clr-card-text);
@@ -855,8 +875,17 @@ input:focus, select:focus, textarea:focus {
         margin: 1rem 0;
     }
 
-.dropdown-options{
+.dropdown-options {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1rem;
     .dropdown-option{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 1rem 0.8rem;
+                        color: var(--dark-400);
+                        text-decoration: none;
 
                     }
 }
@@ -895,8 +924,68 @@ input:focus, select:focus, textarea:focus {
 #notification-container{
     position: relative;
     .dropdown{
-                 min-width: 350px;
-             }
+        min-width: 450px;
+    }
+
+    .dropdown-header{
+        margin: 0.5rem 0.5rem 0;
+    }
+
+    .notifications{
+        display: grid;
+        gap: 0.5rem;
+
+        .notification
+            {
+                transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                grid-template-areas: "img heading btn" "img time btn";
+                align-items: center;
+                column-gap: 1rem;
+                padding: 0.5rem 1rem;
+                border-radius: 14px;
+                width: 100%;
+                img {
+                border-radius: 50%;
+                height: 56px;
+                width: 56px;
+            }
+            .user-image {
+            grid-area: img;
+            border-radius: 50%;
+            overflow: hidden;
+            height: 56px;
+            width: 56px;
+            border: 3px solid var(--white-100);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+
+            .project-image {
+                grid-area: img;
+                border-radius: 30%;
+            }
+
+            .heading{
+                grid-area: heading;
+            }
+
+            .time{
+                grid-area: time;
+                font-size: 0.8em;
+                color: var(--gray-800);
+            }
+
+            .btn-close{
+                grid-area: btn;
+            }
+            &:hover {
+                background-color: var(--white-200);
+            }
+         }
+    }
 }
 
 #account-container {
@@ -905,21 +994,21 @@ input:focus, select:focus, textarea:focus {
                  width: 100%;
                 min-width: 350px;
             }
-    .account-name{
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 0.5rem 1rem;
-        background-color: var(--clr-background);
-        border-radius: 14px;
-        width: 100%;
-
-        img{
+.account-name {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--clr-background);
+    border-radius: 14px;
+    width: 100%;
+    img{
                width:40px;
                height: 40px;
                border-radius: 50%;
                border: 2px solid var(--clr-border)
            }
+      
     }
 }
 
@@ -945,4 +1034,29 @@ input:focus, select:focus, textarea:focus {
     &:not(:empty)::after{
         margin-left: 1rem;
     }
+}
+
+.badge {
+    border-radius: 12px;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.9em;
+    font-weight: 400;
+    font-style: normal;
+    font-family: var(--font-standard);
+
+    &.badge-red
+        {
+            background-color: var(--red);
+            border: 1px solid var(--white-100);
+            color: var(--white-100);
+        }
+}
+
+
+.show{
+    display: block !important;
+}
+
+.dropdown-show {
+    display: block !important;
 }
