@@ -629,10 +629,22 @@ form{
     margin-top: 3rem;
 }
 
-.form-group{
-    display:grid;
+.form-group {
+    display: grid;
     gap: 0.2rem;
     margin-bottom: 1rem;
+    width: 100%;
+}
+
+.form-horizontal-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 1rem;
+}
+
+input[type="date"] {
+    width: 100%;
 }
 
 .search{
@@ -670,7 +682,105 @@ form{
         text-align: left;
     }
 
-input, select, textarea{
+.form-select{
+    position: relative;
+    font-family: var(--font-standard);
+    width: 100%;
+
+    &.has-placeholder{
+        .form-select-trigger{
+            color: var(--gray-700);
+            font-size: 0.9em;
+        }
+    }
+
+    &:not(.has-placeholder){
+        .form-select-trigger{
+            color: var(--dark-400);
+        }
+    }
+
+.form-select-trigger {
+    width: 100%;
+    min-height: 40px;
+    background-color: var(--white-100);
+    border: 1px solid var(--gray-300);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s ease-in-out;
+    position: relative;
+    font-family: var(--font-standard) 
+    .form-select-text{
+            flex: 1;
+            text-align: left;
+        }
+
+        &::before{
+            content: '\f141';
+            font-family: var(--font-fa-free);
+            color: var(--dark-600);
+            position: absolute;
+            right: 1rem;
+            pointer-events: none;
+        }
+    }
+
+    .form-select-options{
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        width: 100%;
+        background-color: var(--white-100);
+        border: 1px solid var(--clr-border);
+        border-radius: 14px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        z-index: 999;
+        display: none;
+    }
+
+    .form-select-option{
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background-color 0.1s ease-in-out;
+        border-radius: 14px;
+        font-family: var(--font-standard)
+        margin: 0.5rem;
+
+        &:hover{
+            background-color: var(--blue-light-opacity);
+        }
+    }
+
+    &.open{
+        .form-select-options{
+            display: block;                    
+        }
+    }
+}
+
+.form-input-with-icon{
+    display: flex;
+    align-items: center;
+    position: relative;
+    i {
+          position: absolute;
+          left: 15px;
+      }
+
+    input{
+        padding-left: 2.5rem;
+    }
+}
+
+input, select, textarea {
     width: 100%;
     font-size: 1em;
     padding: 0.5rem 1rem;
@@ -692,10 +802,10 @@ input:focus, select:focus, textarea:focus {
 
 /* image-previewer */
 .image-previewer {
-    border: 2px dashed var(--clr-border);
+    border: 3px dashed var(--gray-700);
     height: 150px;
     width: 150px;
-    margin: 2rem auto;
+    margin: auto auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -710,10 +820,11 @@ input:focus, select:focus, textarea:focus {
         font-weight: var(--font-bold);
         background-color: var(--dark-100-60);
         color: var(--white-100);
-        padding: 1rem 1.25rem;
+        padding: 1rem 1rem;
         border-radius: 50%;
         position: relative;
         bottom: 0;
+        margin: auto auto;
     }
 
     .image-previewer.selected::after {
@@ -722,12 +833,14 @@ input:focus, select:focus, textarea:focus {
         bottom: 5px;
     }
 
-    .image-previewer.circle {
-        border-radius: 50%;
+    .circle {
+        border-radius: 30px;
+        position: absolute;
+
     }
 
     .image-previewer.square {
-        border-radius: 16px;
+        border-radius: 30px;
     }
 
 
@@ -746,6 +859,7 @@ input:focus, select:focus, textarea:focus {
 
     .modal-custom .modal-custom-content {
         background-color: var(--clr-modal-background);
+        min-width: 500px;
         border-radius: 16px;
         box-shadow: 0 4px 4px 3px rgba(196 196 196 0.1);
         padding: 2rem;
@@ -1055,6 +1169,10 @@ input:focus, select:focus, textarea:focus {
 
 .show{
     display: block !important;
+}
+
+.show-flex{
+    display: flex !important;
 }
 
 .dropdown-show {
