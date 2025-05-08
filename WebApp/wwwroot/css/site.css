@@ -1388,6 +1388,10 @@ input:focus, select:focus, textarea:focus {
     z-index: 999;
 }
 
+#addProjectModal {
+    z-index: 999;
+}
+
 .time{
     padding: 0.5rem 1rem;
     display: inherit;
