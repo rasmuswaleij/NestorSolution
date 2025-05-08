@@ -1,6 +1,9 @@
 ﻿@using Business.Models
 @model ProjectResult<IEnumerable<Project>>
 
+
+
+
 @{
     ViewData["Title"] = "Projects";
     <!--Below written with help from AI-->
@@ -36,7 +39,7 @@
         {
             @foreach (var member in Model.Result)
             {
-                <div class="card project-card">
+                <div class="card project-card" data-project-id="@member.Id">
                     <div class="card-header">
                         <div class="project-profile-image">
                             <img src="~/images/projects/project-logo-template.svg" />
@@ -44,12 +47,12 @@
                         <h6 class="project-title">@member.ProjectName</h6>
                         <span class="client-name">Nexon Inc.</span>
                         <div id="project-actions-container">
-                            <button type="button" data-type="dropdown" data-target="#project-dropdown" class="btn-action">
+                            <button type="button" data-type="dropdown" data-target="#project-dropdown-@member.Id" class="btn-action">
                                 @*<i class="fa-solid fa-ellipsis edit-btn" data-modal="true" data-project-id="@member.Id" data-target="#editProjectForm" style="cursor: pointer;"></i> *@
                                 <i class="fa-solid fa-ellipsis edit-btn" ></i>
 
                             </button>
-                            <div id="project-dropdown" class="dropdown ">
+                            <div id="project-dropdown-@member.Id" class="dropdown ">
                                
                                 <div class="dropdown-body">
                                     
@@ -84,7 +87,20 @@
                     <div class="card-body">
                     <p>Administration is the key to be late with any deadline</p>
                     </div>
-                    <div class="card-footer"></div>
+                    <div class="card-footer">
+                        <div class="badge badge-normal time">
+                            <i class="fa-duotone fa-solid fa-clock"></i>
+                            <span>3 days left</span>
+                        </div>
+                        <div class="members">
+                            <div class="user-image">
+                                <img src="~/images/users/user-template-male-green-svg.svg" />
+                            </div>
+                            <div class="user-image">
+                                <img src="~/images/users/user-template-female-red-svg.svg" />
+                            </div>
+                        </div>
+                    </div>
 
 
 
