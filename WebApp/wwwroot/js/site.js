@@ -1,4 +1,20 @@
-﻿//dropdowns
+﻿const addProjectDescriptionTextarea = document.getElementById('add-project-description')
+const addProjectDescriptionQuill = new Quill('#add-project-description-wysiwyg-editor', {
+    modules: {
+        syntax: true,              
+        toolbar: '#add-project-description-wysiwyg-toolbar'
+    },
+    theme: 'snow',
+    placeholder: 'Add description...'
+});
+
+addProjectDescriptionQuill.on('text-change', function () {
+    addProjectDescriptionTextarea.value = addProjectDescriptionQuill.root.innerHTML
+})
+
+
+
+//dropdowns
 const dropdowns = document.querySelectorAll('[data-type="dropdown"]')
 document.addEventListener('click', function (event) {
     let clickedDropdown = null

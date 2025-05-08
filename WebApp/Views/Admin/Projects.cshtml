@@ -21,7 +21,7 @@
 
 <div id="editProjectModalContainer"></div>
 
-<section id="members">
+<section id="projects">
     <div class="page-header">
         <h1>@ViewData["Title"]</h1>
         <button type="button" data-modal="true" data-target="#addProjectModal" class="btn btn-add btn-blue">
@@ -31,15 +31,60 @@
 
     </div>
 
-    <div class="members-list">
+    <section class="project-list">
         @if (Model != null)
         {
             @foreach (var member in Model.Result)
             {
-                <div class="card member">
-                    <h4 class="name">@member.ProjectName</h4>
-                    
-                    <i class="fa-solid fa-ellipsis edit-btn" data-modal="true" data-project-id="@member.Id" data-target="#editProjectForm" style="cursor: pointer;"></i>
+                <div class="card project-card">
+                    <div class="card-header">
+                        <div class="project-profile-image">
+                            <img src="~/images/projects/project-logo-template.svg" />
+                        </div>
+                        <h6 class="project-title">@member.ProjectName</h6>
+                        <span class="client-name">Nexon Inc.</span>
+                        <div id="project-actions-container">
+                            <button type="button" data-type="dropdown" data-target="#project-dropdown" class="btn-action">
+                                @*<i class="fa-solid fa-ellipsis edit-btn" data-modal="true" data-project-id="@member.Id" data-target="#editProjectForm" style="cursor: pointer;"></i> *@
+                                <i class="fa-solid fa-ellipsis edit-btn" ></i>
+
+                            </button>
+                            <div id="project-dropdown" class="dropdown ">
+                               
+                                <div class="dropdown-body">
+                                    
+                                    <nav class="dropdown-actions">
+                                        <a class="dropdown-action" href="#" data-modal="true" data-project-id="@member.Id" data-target="#editProjectForm">
+                                            <i class="fa-duotone fa-solid fa-pen-to-square"></i>
+                                            <span>Edit</span>
+                                        </a>
+
+
+                                    </nav>
+                                    <nav class="dropdown-actions">
+                                        <a class="dropdown-action" href="#">
+                                            <i class="fa-duotone fa-solid fa-user-plus"></i>
+                                            <span>Add Member</span>
+                                        </a>
+                                    </nav>
+                                    <div class="divider"></div>
+                                    <nav class="dropdown-actions">
+                                        <a class="dropdown-action remove" href="#">
+                                            <i class="fa-duotone fa-solid fa-trash"></i>
+                                            <span>Delete Project</span>
+                                        </a>
+
+
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                    <p>Administration is the key to be late with any deadline</p>
+                    </div>
+                    <div class="card-footer"></div>
 
 
 
@@ -47,5 +92,5 @@
             }
         }
 
-    </div>
+    </section>
 </section>
