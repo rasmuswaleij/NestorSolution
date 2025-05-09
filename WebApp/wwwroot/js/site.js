@@ -1,4 +1,7 @@
-﻿const addProjectDescriptionTextarea = document.getElementById('add-project-description')
+﻿
+
+
+const addProjectDescriptionTextarea = document.getElementById('add-project-description')
 const addProjectDescriptionQuill = new Quill('#add-project-description-wysiwyg-editor', {
     modules: {
         syntax: true,              
@@ -11,6 +14,8 @@ const addProjectDescriptionQuill = new Quill('#add-project-description-wysiwyg-e
 addProjectDescriptionQuill.on('text-change', function () {
     addProjectDescriptionTextarea.value = addProjectDescriptionQuill.root.innerHTML
 })
+
+
 
 
 
@@ -79,48 +84,55 @@ fileInput.addEventListener('change', function (e) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("JavaScript loaded successfully");
 
-    const previewSize = 150
+    function initializeFormSelects() {
+        console.log("JavaScript loaded successfully");
+
+        const previewSize = 150
 
 
-    document.querySelectorAll('.form-select').forEach(select => {
-        const trigger = select.querySelector('.form-select-trigger')
-        const triggerText = select.querySelector('.form-select-text')
-        const options = select.querySelectorAll('.form-select-option')
-        const hiddenInput = select.querySelector('input[type="hidden"]')
-        const placeholder = select.dataset.placeholder || "Choose"
+        document.querySelectorAll('.form-select').forEach(select => {
+            const trigger = select.querySelector('.form-select-trigger')
+            const triggerText = select.querySelector('.form-select-text')
+            const options = select.querySelectorAll('.form-select-option')
+            const hiddenInput = select.querySelector('input[type="hidden"]')
+            const placeholder = select.dataset.placeholder || "Choose"
 
-        const setValue = (value = "", text = placeholder) => {
-            triggerText.textContent = text
-            hiddenInput.value = value
-            select.classList.toggle('has-placeholder', !value)
-        };
+            const setValue = (value = "", text = placeholder) => {
+                triggerText.textContent = text
+                hiddenInput.value = value
+                select.classList.toggle('has-placeholder', !value)
+            };
 
-        setValue()
+            setValue()
 
-        trigger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            document.querySelectorAll('.form-select-open')
-                .forEach(el => el !== select && el.classList.remove('open'))
-            select.classList.toggle('open')
-        })
-
-        options.forEach(option =>
-            option.addEventListener('click', () => {
-                setValue(option.dataset.value, option.textContent)
-                select.classList.remove('open')
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.querySelectorAll('.form-select.open')
+                    .forEach(el => el !== select && el.classList.remove('open'))
+                select.classList.toggle('open')
             })
-        )
 
-        document.addEventListener('click', e => {
-            if (!select.contains(e.target))
-                select.classList.remove('open')
+            options.forEach(option =>
+                option.addEventListener('click', () => {
+                    const rawValue = option.dataset.value;
+                    const parsedValue = !isNaN(rawValue) && rawValue.trim() !== "" ? Number(rawValue) : rawValue;
+                    setValue(parsedValue, option.textContent);
+
+
+                    //setValue(option.dataset.value, option.textContent)
+                    select.classList.remove('open')
+                })
+            )
+
+            document.addEventListener('click', e => {
+                if (!select.contains(e.target))
+                    select.classList.remove('open')
+            })
+
         })
-        
-    })
 
-
+    }
 
 
 
@@ -129,6 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
     //Got help from ChatGPT with the function below
     //Den här finns för att edit ska funka. Är onödigt lång.
     document.querySelectorAll("[data-modal][data-project-id]").forEach(function (icon) {
+
+
+
         icon.addEventListener("click", function () {
             const projectId = this.getAttribute("data-project-id");
 
@@ -138,9 +153,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     document.getElementById("editProjectModalContainer").innerHTML = '';
                     document.getElementById("editProjectModalContainer").innerHTML = html;
+
+
+
+                    const editProjectDescriptionTextarea = document.getElementById('edit-project-description')
+                    const editProjectDescriptionQuill = new Quill('#edit-project-description-wysiwyg-editor', {
+                        modules: {
+                            syntax: true,
+                            toolbar: '#edit-project-description-wysiwyg-toolbar'
+                        },
+                        theme: 'snow',
+                        placeholder: 'Add description...'
+                    });
+
+                    editProjectDescriptionQuill.on('text-change', function () {
+                        editProjectDescriptionTextarea.value = editProjectDescriptionQuill.root.innerHTML
+                    })
+
+
+
+                   
                     document.querySelectorAll('.modal-custom').forEach(modal => {
                         modal.style.display = 'none';
                     });
+
+                    
+
+                    initializeFormSelects()
+
+                    
+                    
+
+
+
 
                     // Visa modalen direkt efter att innehållet laddats
                     const modal = document.querySelector('#editProjectModalContainer .modal-custom');
@@ -152,6 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const modal = button.closest('.modal-custom');
                                 if (modal)
                                     modal.style.display = 'none';
+
+                                
+
 
                                 modal.querySelectorAll('form').forEach(form => {
                                     form.reset();
@@ -177,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const modalTarget = button.getAttribute('data-target')
             const modal = document.querySelector(modalTarget)
+            initializeFormSelects()
 
             if (modal)
                 modal.style.display = 'flex';
