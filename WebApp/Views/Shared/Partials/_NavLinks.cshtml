@@ -3,7 +3,7 @@
         <i class="fa-solid fa-chart-tree-map"></i>
         <span>Dashboard</span>
     </a>
-    <a class="nav-link @(Context.Request.Path == "/admin/projects/showallprojects" ? "active" : "")" href="/Admin/Projects/ShowAllProjects">
+    <a class="nav-link @(Context.Request.Path == "/admin/projects/showallprojects" ? "active" : "") @(Context.Request.Path == "/admin/projects/showstartedprojects" ? "active" : "") @(Context.Request.Path == "/admin/projects/showcompletedprojects" ? "active" : "")" href="/Admin/Projects/ShowAllProjects">
         <i class="fa-solid fa-briefcase"></i>
         <span>Projects</span>
     </a>
