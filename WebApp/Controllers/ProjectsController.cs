@@ -1,10 +1,13 @@
 ﻿using Business.Interfaces;
 using Business.Services;
 using Domain.Dtos;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace WebApp.Controllers;
+
+[Route("Admin/Projects")]
 public class ProjectsController(IProjectService projectService) : Controller
 {
 
@@ -14,6 +17,29 @@ public class ProjectsController(IProjectService projectService) : Controller
     {
 
         return View();
+    }
+
+    [HttpGet("ShowAllProjects")]
+    public  async Task<IActionResult> ShowAllProjects()
+    {
+        var projects = await _projectService.GetProjectsAsync();
+
+
+        return View(projects);
+    }
+    [HttpGet("ShowStartedProjects")]
+    public async Task<IActionResult> ShowStartedProjects()
+    {
+        var projects = await _projectService.GetProjectsAsync();
+
+        return View(projects);
+    }
+    [HttpGet("ShowCompletedProjects")]
+    public async Task<IActionResult> ShowCompletedProjects()
+    {
+        var projects = await _projectService.GetProjectsAsync();
+
+        return View(projects);
     }
 
     [HttpPost]

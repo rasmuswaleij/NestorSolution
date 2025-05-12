@@ -356,10 +356,38 @@ a{
     }
 
 .page-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-areas: "title button" "filter na"; 
+    grid-template-columns: 1fr auto;
+    border-bottom: 1px solid var(--gray-500)
 
+    
+}
+
+.projects-title{
+    grid-area: title;
+}
+
+.projects-filter{
+    width: 100%;
+    padding-top: 1.5rem;
+    grid-area: filter;
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+
+    a
+{
+    color: var(--gray-900);
+    text-decoration: none;
+    font-size: 0.8em;
+    padding-bottom: 0.6rem;
+    &.active{
+                      color: var(--clr-navlink-text-active);
+                      font-weight: 600;
+                      border-bottom: 3px solid var(--clr-navlink-text-active);
+                  }
+      }
 }
 
 .btn {

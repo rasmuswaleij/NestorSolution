@@ -58,6 +58,8 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
+
+
 //Nedan kod för omdirigering. Oklart varför han använder det.
 //När det används går det inte att komma åt Dashboard
 //app.UseRewriter(new RewriteOptions().AddRedirect("^$", "/admin/clients"));

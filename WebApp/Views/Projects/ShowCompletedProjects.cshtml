@@ -15,7 +15,7 @@
 
 
 <div>
-        <!--Below written with help from AI-->
+    <!--Below written with help from AI-->
     <partial name="Partials/Sections/_AddProjectForm" model="addProjectFormModel" />
     <partial name="Partials/Sections/_EditProjectModal" model="editProjectFormModel" />
 
@@ -32,9 +32,9 @@
             <span>Add Project</span>
         </button>
         <div class="projects-filter">
-            <a class="active" asp-action="ShowAllProjects" asp-asp-controller="ProjectsController">ALL [7]</a>
-            <a asp-action="ShowStartedProjects" asp-asp-controller="ProjectsController">STARTED [2]</a>
-            <a asp-action="ShowCompletedProjects" asp-asp-controller="ProjectsController">COMPLETED [5]</a>
+            <a class="@(Context.Request.Path == "/admin/projects/showallprojects" ? "active" : "")" href="/Admin/Projects/ShowAllProjects">ALL [7]</a>
+            <a class="@(Context.Request.Path == "/admin/projects/showstartedprojects" ? "active" : "")" href="/Admin/Projects/ShowStartedProjects">STARTED [2]</a>
+            <a class="@(Context.Request.Path == "/admin/projects/showcompletedprojects" ? "active" : "")" href="/Admin/Projects/ShowCompletedProjects">COMPLETED [5]</a>
 
         </div>
     </div>
@@ -54,13 +54,13 @@
                         <div id="project-actions-container">
                             <button type="button" data-type="dropdown" data-target="#project-dropdown-@member.Id" class="btn-action">
                                 @*<i class="fa-solid fa-ellipsis edit-btn" data-modal="true" data-project-id="@member.Id" data-target="#editProjectForm" style="cursor: pointer;"></i> *@
-                                <i class="fa-solid fa-ellipsis edit-btn" ></i>
+                                <i class="fa-solid fa-ellipsis edit-btn"></i>
 
                             </button>
                             <div id="project-dropdown-@member.Id" class="dropdown ">
-                               
+
                                 <div class="dropdown-body">
-                                    
+
                                     <nav class="dropdown-actions">
                                         <a class="dropdown-action" href="#" data-modal="true" data-project-id="@member.Id" data-target="#editProjectForm">
                                             <i class="fa-duotone fa-solid fa-pen-to-square"></i>
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                    <p>Administration is the key to be late with any deadline</p>
+                        <p>Administration is the key to be late with any deadline</p>
                     </div>
                     <div class="card-footer">
                         <div class="badge badge-normal time">
