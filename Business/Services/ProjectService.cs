@@ -65,7 +65,32 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
         return response.MapTo<ProjectResult<IEnumerable<Project>>>();
     }
 
-  
+    public async Task<ProjectResult<IEnumerable<Project>>> GetStartedProjectsAsync()
+    {
+        var response = await _projectRepository.GetAllAsync
+            (orderByDescending: true,
+            sortBy: s => s.Created,
+            where: x => x.IsCompleted,
+            include => include.Member,
+            include => include.Status,
+            include => include.Client);
+
+        return response.MapTo<ProjectResult<IEnumerable<Project>>>();
+    }
+
+    public async Task<ProjectResult<IEnumerable<Project>>> GetCompletedProjectsAsync()
+    {
+        var response = await _projectRepository.GetAllAsync
+            (orderByDescending: true,
+            sortBy: s => s.Created,
+            where: x => x.IsCompleted == false,
+            include => include.Member,
+            include => include.Status,
+            include => include.Client);
+
+        return response.MapTo<ProjectResult<IEnumerable<Project>>>();
+    }
+
 
     public async Task<ProjectResult<Project>> GetProjectAsync(string id)
     {

@@ -1,7 +1,11 @@
-﻿namespace Domain.Dtos;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Dtos;
 public class ProjectAddFormData
 {
-//    public string? Image { get; set; }
+    //    public string? Image { get; set; }
+    [Display(Name = "Project name", Prompt = "Enter project name")]
+    [Required(ErrorMessage = "Required")]
     public string ProjectName { get; set; } = null!;
     public string? Description { get; set; }
     public DateTime StartDate { get; set; }

@@ -30,24 +30,26 @@ public class ProjectsController(IProjectService projectService) : Controller
     [HttpGet("ShowStartedProjects")]
     public async Task<IActionResult> ShowStartedProjects()
     {
-        var projects = await _projectService.GetProjectsAsync();
+        var projects = await _projectService.GetStartedProjectsAsync();
 
         return View(projects);
     }
     [HttpGet("ShowCompletedProjects")]
     public async Task<IActionResult> ShowCompletedProjects()
     {
-        var projects = await _projectService.GetProjectsAsync();
+        var projects = await _projectService.GetCompletedProjectsAsync();
 
         return View(projects);
     }
 
-    [HttpPost]
+    [HttpPost("Add")]
     public async Task<IActionResult> Add([FromForm] ProjectAddFormData form)
     {
-
-        Console.WriteLine("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        Debug.WriteLine("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        if (!ModelState.IsValid)
+        {
+            //return PartialView("Partials/Sections/_AddProjectForm", form);
+            return View("ShowAllProjects", form);
+        }
 
 
         //send data to clientService
@@ -56,10 +58,12 @@ public class ProjectsController(IProjectService projectService) : Controller
         if (!result.Succeeded)
         {
             ModelState.AddModelError(string.Empty, result.Error ?? "Something went wrong");
-            return View("Add", form); // eller visa ett felmeddelande
+            //return View("Add", form); // eller visa ett felmeddelande
+            return RedirectToAction("ShowAllProjects", "Projects");
+
         }
 
-        return RedirectToAction("Projects", "Admin");
+        return RedirectToAction("ShowAllProjects", "Projects");
     }
 
     [HttpGet]

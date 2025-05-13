@@ -135,7 +135,9 @@
             </div>
            
 
-            <button @* type="submit" *@ class="btn btn-submit btn-blue" style="width: 100%; margin-top: 30px; ">Create</button>
+            <button  type="submit"  class="btn btn-submit btn-blue" style="width: 100%; margin-top: 30px; ">Create</button>
         </form>
     </div>
 </div>
+
+@await Html.PartialAsync("Partials/_ValidationScript")

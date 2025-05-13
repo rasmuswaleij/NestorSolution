@@ -8,8 +8,13 @@ namespace Business.Interfaces
     public interface IProjectService
     {
         Task<ProjectResult> CreateProjectAsync(ProjectAddFormData formData);
+
         Task<ProjectResult<Project>> GetProjectAsync(string id);
+
         Task<ProjectResult<IEnumerable<Project>>> GetProjectsAsync();
+        Task<ProjectResult<IEnumerable<Project>>> GetStartedProjectsAsync();
+        Task<ProjectResult<IEnumerable<Project>>> GetCompletedProjectsAsync();
+
 
         Task<ProjectResult> UpdateProjectAsync(EditProjectForm formData);
 
